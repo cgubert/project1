@@ -36,7 +36,7 @@ your general approach to analyzing the data,
 
 ######Statistical Methods
 
-Loss of NEV or EVR activity reduces the length of fruit by `r percent[["nev"]]`% and `r percent[["evr"]]`%, repectively. 
+Loss of NEV or EVR activity reduces the length of fruit by `percent[["nev"]]`% and `percent[["evr"]]`%, repectively. 
 
 ```r
 colMeans(fruitdata)
@@ -56,6 +56,9 @@ segments(mp-0.1,means-stDevs,mp+0.1,means-stDevs,lwd=1)
 segments(mp-0.1,means+stDevs,mp+0.1,means+stDevs,lwd=1)
 #compare means of mutant fruit length to WT
 percent<-(means/(means["WT"]))*100
+#ugly stats
+t.test(fruitdata$WT,fruitdata$evr)
+t.test(fruitdata$WT,fruitdata$nev)
 ```
 
 ######Summary
