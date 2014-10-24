@@ -22,7 +22,8 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 ##Measuring Fruit Size to Help Map Genetic Pathways in *Arabidopsis*
 
 ######Introduction
-*Arabidopsis thaliana* has been a popular model organism for the study of genetic function due to its simplicity and knowledge of its genome. Cell separation and organ abscission is a common biological process among plants that allows them to shed organs such as ripened fruit or dead leaves. In an effort to understand a signaling pathway involved in this process, a set mutants known to affect this process were crossed together and the resulting phenotypes were analyzed. NEVERSHED (NEV) is thought to assist with trafficking of cargo between endosomes and the extracelluar space. Mutations in this gene block the shedding of outer floral organs in *Arabidopsis* flowers and reduce the length of mature fruit. EVERSHED (EVR) encodes a receptor-like kinase that, when supressed with *nev*, rescues abscission and organ shedding. However, it has also been observed that the *nev evr* double mutant does not rescue WT fruit length, suggesting that the pathways for control of abscission and fruit development are separate, though they are both affected by these two genes. 
+*Arabidopsis thaliana* has been a popular model organism for the study of genetic function due to its simplicity and knowledge of its genome. Cell separation and organ abscission is a common biological process among plants that allows them to shed organs such as ripened fruit or dead leaves. In an effort to understand a signaling pathway involved in this process, a set mutants known to affect this process were crossed together and the resulting phenotypes were analyzed. NEVERSHED (NEV) is thought to assist with trafficking of cargo between endosomes and the extracelluar space. Mutations in this gene block the shedding of outer floral organs in *Arabidopsis* flowers and reduce the length of mature fruit. EVERSHED (EVR) encodes a receptor-like kinase that, when supressed with *nev*, rescues abscission and organ shedding. However, it has also been observed that the *nev evr* double mutant does not rescue WT fruit length, suggesting that the pathways for control of abscission and fruit development are separate, though they are both affected by these two genes. Two other receptor-like kinases, HAESA (HAE) and HAESA-LIKE2(HSL2), act redundantly to switch on the production of enzymes required for cell separation. The peptide INFLORESCENCE DEFICIENT IN ABSCISSION (IDA) is the proposed ligand for both receptors. Loss of HAE/HSL2 function in *nev evr* flowers prevents organ shedding. To investigate the role of HAE and HSL2 in fruit development, the following mutant crosses were generated: *evr*, *nev*, *nev evr*, *nev evr hae*, *nev evr hae hsl2*, and *nev evr ida*.
+NULL HYP: 
 
 Your document should layout your question in the introduction, provide a brief synopsis for why it is important, 
 
@@ -33,6 +34,7 @@ your general approach to analyzing the data,
 
 ######Statistical Methods
 
+Using NIH ImageJ, `r nrow(fruitdata)` mature fruit from each genotype were measured lengthwise. The measurments of the mutant fruit were compared to the measurments of wild-type 
 
 ```r
 colMeans(fruitdata)
