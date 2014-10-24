@@ -74,18 +74,35 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h2>Measuring Fruit Size to Help Map Genetic Pathways in <em>Arabidopsis</em></h2>
 <div id="introduction" class="section level6">
 <h6>Introduction</h6>
-<p><em>Arabidopsis thaliana</em> has been a popular model organism for the study of genetic function due to its simplicity and knowledge of its genome. Cell separation and organ abscission is a common biological process among plants that allows them to shed organs such as ripened fruit or dead leaves. In an effort to understand a signaling pathway involved in this process, a set mutants known to affect this process were crossed together and the resulting phenotypes were analyzed. NEVERSHED (NEV) is thought to assist with trafficking of cargo between endosomes and the extracelluar space. Mutations in this gene block the shedding of outer floral organs in <em>Arabidopsis</em> flowers and reduce the length of mature fruit. EVERSHED (EVR) encodes a receptor-like kinase that, when supressed with <em>nev</em>, rescues abscission and organ shedding. However, it has also been observed that the <em>nev evr</em> double mutant does not rescue WT fruit length, suggesting that the pathways for control of abscission and fruit development are separate, though they are both affected by these two genes. Two other receptor-like kinases, HAESA (HAE) and HAESA-LIKE2(HSL2), act redundantly to switch on the production of enzymes required for cell separation. The peptide INFLORESCENCE DEFICIENT IN ABSCISSION (IDA) is the proposed ligand for both receptors. Loss of HAE/HSL2 function in <em>nev evr</em> flowers prevents organ shedding. To investigate the role of HAE and HSL2 in fruit development, the following mutant crosses were generated: <em>evr</em>, <em>nev</em>, <em>nev evr</em>, <em>nev evr hae</em>, <em>nev evr hae hsl2</em>, and <em>nev evr ida</em>. NULL HYP:</p>
+<p><em>Arabidopsis thaliana</em> has been a popular model organism for the study of genetic function due to its simplicity and knowledge of its genome. Cell separation and organ abscission is a common biological process among plants that allows them to shed organs such as ripened fruit or dead leaves. In an effort to understand a signaling pathway involved in this process, a set mutants known to affect this process were crossed together and the resulting phenotypes were analyzed. NEVERSHED (NEV) is thought to assist with trafficking of cargo between endosomes and the extracelluar space. Mutations in this gene block the shedding of outer floral organs in <em>Arabidopsis</em> flowers and reduce the length of mature fruit. EVERSHED (EVR) encodes a receptor-like kinase that, when supressed with <em>nev</em>, rescues abscission and organ shedding. However, it has also been observed that the <em>nev evr</em> double mutant does not rescue WT fruit length, suggesting that the pathways for control of abscission and fruit development are separate, though they are both affected by these two genes. Two other receptor-like kinases, HAESA (HAE) and HAESA-LIKE2(HSL2), act redundantly to switch on the production of enzymes required for cell separation. The peptide INFLORESCENCE DEFICIENT IN ABSCISSION (IDA) is the proposed ligand for both receptors. Loss of HAE/HSL2 function in <em>nev evr</em> flowers prevents organ shedding. To investigate the role of HAE and HSL2 in fruit development in relation to NEV, EVR, and IDA, the following mutant crosses were generated: <em>evr</em>, <em>nev</em>, <em>nev evr</em>, <em>nev evr hae</em>, <em>nev evr hae hsl2</em>, and <em>nev evr ida</em>. This report seeks to confirm that <em>nev</em> and <em>evr</em> significantly reduce fruit growth as compared to WT. It is expected that HAE and HSL2 act redundantly in controlling fruit growth. NULL HYP:</p>
 <p>Your document should layout your question in the introduction, provide a brief synopsis for why it is important,</p>
 </div>
 <div id="background-and-materials" class="section level6">
 <h6>Background and Materials</h6>
 <p>The raw data for this analysis were kindly shared by Dr. Sarah Liljegren at the University of Mississippi. All background information, methods, and references can be found in <a href="https://www.landesbioscience.com/journals/psb/article/29115/">HAESA and HAESA-LIKE2 activate organ abscission downstream of NEVERSHED and EVERSHED in <em>Arabidopsis</em> flowers</a>, a short communication published in Plant Signaling and Behavior, Landes Bioscience, 2014.</p>
+<p>Using NIH ImageJ, 30 mature fruit of each genotype were measured lengthwise. The measurments of the mutant fruit were compared to the measurments of wild-type.</p>
 <p>your general approach to analyzing the data,</p>
 </div>
 <div id="statistical-methods" class="section level6">
 <h6>Statistical Methods</h6>
-<p>Using NIH ImageJ, 30 mature fruit from each genotype were measured lengthwise. The measurments of the mutant fruit were compared to the measurments of wild-type</p>
-<pre class="r"><code>colMeans(fruitdata)</code></pre>
+<p>Loss of NEV or EVR activity reduces the length of fruit by</p>
+<pre class="r"><code>colMeans(fruitdata)
+#plot fruitdata
+barplot(means,axisnames=FALSE,col=&quot;dodgerblue3&quot;,ylim=c(0,14),main=&quot;Fruit Length&quot;,xlab=&quot;Genotype&quot;,ylab=&quot;length(mm)&quot;)
+#create vector of bar mid-points
+mp&lt;-barplot(means,col=&quot;blue&quot;,ylim=c(0,14),main=&quot;Fruit Length&quot;,xlab=&quot;Genotype&quot;,ylab=&quot;length(mm)&quot;)
+#label bars
+axis(1,labels=c(&quot;WT&quot;,&quot;evr&quot;,&quot;nev&quot;,&quot;nev evr hae&quot;,&quot;nev evr hae hsl2&quot;,&quot;nev evr&quot;,&quot;nev evr ida&quot;),font=3,at=mp)
+#outline bar plot
+box()
+#get standard deviations of data
+stDevs&lt;-matrix(c(sd(fruitdata$WT),sd(fruitdata$evr),sd(fruitdata$nev),sd(fruitdata$nevevrhae),sd(fruitdata$nevevrhaehsl),sd(fruitdata$nevevr),sd(fruitdata$nevidaevr)))
+#plot error bar segments
+segments(mp,means-stDevs,mp,means+stDevs,lwd=1)
+segments(mp-0.1,means-stDevs,mp+0.1,means-stDevs,lwd=1)
+segments(mp-0.1,means+stDevs,mp+0.1,means+stDevs,lwd=1)
+#compare means of mutant fruit length to WT
+(means/(means[&quot;WT&quot;]))*100</code></pre>
 </div>
 <div id="summary" class="section level6">
 <h6>Summary</h6>
