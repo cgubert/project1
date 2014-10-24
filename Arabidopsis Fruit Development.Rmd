@@ -45,6 +45,14 @@ barplot(means,axisnames=FALSE,col="dodgerblue3",ylim=c(0,14),main="Fruit Length"
 mp<-barplot(means,col="blue",ylim=c(0,14),main="Fruit Length",xlab="Genotype",ylab="length(mm)")
 #label bars
 axis(1,labels=c("WT","evr","nev","nev evr hae","nev evr hae hsl2","nev evr","nev evr ida"),font=3,at=mp)
+#outline bar plot
+box()
+#get standard deviations of data
+stDevs<-matrix(c(sd(fruitdata$WT),sd(fruitdata$evr),sd(fruitdata$nev),sd(fruitdata$nevevrhae),sd(fruitdata$nevevrhaehsl),sd(fruitdata$nevevr),sd(fruitdata$nevidaevr)))
+#plot error bar segments
+segments(mp,means-stDevs,mp,means+stDevs,lwd=1)
+segments(mp-0.1,means-stDevs,mp+0.1,means-stDevs,lwd=1)
+segments(mp-0.1,means+stDevs,mp+0.1,means+stDevs,lwd=1)
 ```
 
 ######Summary
