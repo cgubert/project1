@@ -36,6 +36,7 @@ your general approach to analyzing the data,
 
 ######Statistical Methods
 
+Loss of NEV or EVR activity reduces the length of fruit by 
 
 ```r
 colMeans(fruitdata)
@@ -53,6 +54,8 @@ stDevs<-matrix(c(sd(fruitdata$WT),sd(fruitdata$evr),sd(fruitdata$nev),sd(fruitda
 segments(mp,means-stDevs,mp,means+stDevs,lwd=1)
 segments(mp-0.1,means-stDevs,mp+0.1,means-stDevs,lwd=1)
 segments(mp-0.1,means+stDevs,mp+0.1,means+stDevs,lwd=1)
+#compare means of mutant fruit length to WT
+(means/(means["WT"]))*100
 ```
 
 ######Summary
