@@ -5,8 +5,6 @@ date: "Friday, October 17, 2014"
 output: html_document
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r}
@@ -21,16 +19,24 @@ plot(cars)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+##Measuring Fruit Size to Help Map Genetic Pathways in *Arabidopsis*
+
+######Introduction
 *Arabidopsis thaliana* has been a popular model organism for the study of genetic function due to its simplicity and knowledge of its genome. Cell separation and organ abscission is a common biological process among plants that allows them to shed organs such as ripened fruit or dead leaves. In an effort to understand a signaling pathway involved in this process, a set mutants known to affect this process were crossed together and the resulting phenotypes were analyzed. NEVERSHED (NEV) is thought to assist with trafficking of cargo between endosomes and the extracelluar space. Mutations in this gene block the shedding of outer floral organs in *Arabidopsis* flowers and reduce the length of mature fruit. EVERSHED (EVR) encodes a receptor-like kinase that, when supressed with *nev*, rescues abscission and organ shedding. However, it has also been observed that the *nev evr* double mutant does not rescue WT fruit length, suggesting that the pathways for control of abscission and fruit development are separate, though they are both affected by these two genes. 
 
 Your document should layout your question in the introduction, provide a brief synopsis for why it is important, 
-describe how you obtained the data, 
 
-The raw data for this analysis was kindly shared by Dr. Sarah Liljegren at the University of Mississippi. All background information, methods, and references can be found in [HAESA and HAESA-LIKE2 activate organ abscission downstream of NEVERSHED and EVERSHED in *Arabidopsis* flowers](https://www.landesbioscience.com/journals/psb/article/29115/), a short communication published in Plant Signaling and Behavior, Landes Bioscience, 2014.
+######Background and Materials
+The raw data for this analysis were kindly shared by Dr. Sarah Liljegren at the University of Mississippi. All background information, methods, and references can be found in [HAESA and HAESA-LIKE2 activate organ abscission downstream of NEVERSHED and EVERSHED in *Arabidopsis* flowers](https://www.landesbioscience.com/journals/psb/article/29115/), a short communication published in Plant Signaling and Behavior, Landes Bioscience, 2014.
 
 your general approach to analyzing the data,
+
+######Statistical Methods
+
 
 ```r
 colMeans(fruitdata)
 ```
+
+######Summary
 a summary of your results, a discussion, and mention of what your future directions would be.
