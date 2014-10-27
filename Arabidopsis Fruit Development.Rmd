@@ -39,6 +39,7 @@ your general approach to analyzing the data,
 Loss of NEV or EVR activity reduces the length of fruit by `percent[["nev"]]`% and `percent[["evr"]]`%, repectively. 
 
 ```r
+#create barplot of fruit lengths
 #reorder data frame
 fruitdata<-fruitdata[c("WT","nev","evr","nevevr","nevevrhae","nevevrhaehsl,"nevidaevr")]
 means<-colMeans(fruitdata)
@@ -56,11 +57,11 @@ stDevs<-matrix(c(sd(fruitdata$WT),sd(fruitdata$evr),sd(fruitdata$nev),sd(fruitda
 segments(mp,means-stDevs,mp,means+stDevs,lwd=1)
 segments(mp-0.1,means-stDevs,mp+0.1,means-stDevs,lwd=1)
 segments(mp-0.1,means+stDevs,mp+0.1,means+stDevs,lwd=1)
-#compare means of mutant fruit length to WT
-percent<-(means/(means["WT"]))*100
-#ugly stats
-t.test(fruitdata$WT,fruitdata$evr)
-t.test(fruitdata$WT,fruitdata$nev)
+#is difference in average lengths significant between genotypes?
+#use analysis of variance test
+#get data into simple matrix to run ANOVA
+
+
 ```
 
 ######Summary
