@@ -22,27 +22,35 @@ Note that the parameter was added to the code chunk to prevent printing of the R
 ##Measuring Fruit Size to Help Map Genetic Pathways in *Arabidopsis*
 
 ######Introduction
-*Arabidopsis thaliana* has been a popular model organism for the study of genetic function due to its simplicity and knowledge of its genome. Cell separation and organ abscission is a common biological process among plants that allows them to shed organs such as ripened fruit or dead leaves. In an effort to understand a signaling pathway involved in this process, a set mutants known to affect this process were crossed together and the resulting phenotypes were analyzed. NEVERSHED (NEV) is thought to assist with trafficking of cargo between endosomes and the extracelluar space. Mutations in this gene block the shedding of outer floral organs in *Arabidopsis* flowers and reduce the length of mature fruit. EVERSHED (EVR) encodes a receptor-like kinase that, when supressed with *nev*, rescues abscission and organ shedding. However, it has also been observed that the *nev evr* double mutant does not rescue WT fruit length, suggesting that the pathways for control of abscission and fruit development are separate, though they are both affected by these two genes. Two other receptor-like kinases, HAESA (HAE) and HAESA-LIKE2(HSL2), act redundantly to switch on the production of enzymes required for cell separation. The peptide INFLORESCENCE DEFICIENT IN ABSCISSION (IDA) is the proposed ligand for both receptors. Loss of HAE/HSL2 function in *nev evr* flowers prevents organ shedding. To investigate the role of HAE and HSL2 in fruit development in relation to NEV, EVR, and IDA, the following mutant crosses were generated: *evr*, *nev*, *nev evr*, *nev evr hae*, *nev evr hae hsl2*, and *nev evr ida*. This report seeks to confirm that *nev* and *evr* significantly reduce fruit growth as compared to WT. It is expected that HAE and HSL2 act redundantly in controlling fruit growth. 
-NULL HYP: 
 
-Your document should layout your question in the introduction, provide a brief synopsis for why it is important, 
+*Arabidopsis thaliana* has been a popular model organism for the study of genetic function due to its simplicity and knowledge of its genome. Cell separation and organ abscission is a common biological process among plants that allows them to shed organs such as ripened fruit or dead leaves. In an effort to understand a signaling pathway involved in this process, a set mutants known to affect this process were crossed together and the resulting phenotypes were analyzed. NEVERSHED (NEV) is thought to assist with trafficking of cargo between endosomes and the extracelluar space. Mutations in this gene block the shedding of outer floral organs in *Arabidopsis* flowers and reduce the length of mature fruit. EVERSHED (EVR) encodes a receptor-like kinase that, when supressed with *nev*, rescues abscission and organ shedding. However, it has also been observed that the *nev evr* double mutant does not rescue WT fruit length, suggesting that the pathways for control of abscission and fruit development are separate, though they are both affected by these two genes. Two other receptor-like kinases, HAESA (HAE) and HAESA-LIKE2(HSL2), act redundantly to switch on the production of enzymes required for cell separation. The peptide INFLORESCENCE DEFICIENT IN ABSCISSION (IDA) is the proposed ligand for both receptors. Loss of HAE/HSL2 function in *nev evr* flowers prevents organ shedding. To investigate the role of HAE and HSL2 in fruit development in relation to NEV, EVR, and IDA, the following mutant crosses were generated: *evr*, *nev*, *nev evr*, *nev evr hae*, *nev evr hae hsl2*, and *nev evr ida*. This report seeks to confirm that *nev* and *evr* significantly reduce fruit growth as compared to WT. It is expected that HAE and HSL2 act redundantly in controlling fruit growth, either to promote or reduce fruit length. 
 
-######Background and Materials
+
+######Background and Data
+
 The raw data for this analysis were kindly shared by Dr. Sarah Liljegren at the University of Mississippi. All background information, methods, and references can be found in [HAESA and HAESA-LIKE2 activate organ abscission downstream of NEVERSHED and EVERSHED in *Arabidopsis* flowers](https://www.landesbioscience.com/journals/psb/article/29115/), a short communication published in Plant Signaling and Behavior, Landes Bioscience, 2014.
 
-Using NIH ImageJ, `r nrow(fruitdata)` mature fruit of each genotype were measured lengthwise. The measurments of the mutant fruit were compared to the measurments of wild-type.
+Using NIH ImageJ, `r nrow(fruitdata)` mature fruit of each genotype were measured lengthwise. The measurments of the mutant fruit were compared to the measurments of wild-type. Several theoretical maps of the signaling pathways involving NEV, EVR, HAE, HSL2, and IDA were deduced from organ shedding and fruit length data. Organ shedding data and proposed signaling pathways are not shown here. 
 
 your general approach to analyzing the data,
 
 ######Statistical Methods
 
-Loss of NEV or EVR activity reduces the length of fruit by `percent[["nev"]]`% and `percent[["evr"]]`%, repectively. 
 
 ```{r}
 #create barplot of fruit lengths
 #reorder data frame
 fruitdata<-fruitdata[c("WT","nev","evr","nevevr","nevevrhae","nevevrhaehsl","nevidaevr")]
 means<-colMeans(fruitdata)
+```
+
+Loss of NEV or EVR activity reduces the length of *Arabidopsis* fruit by 
+```r ((means["nev"])/(means["WT"])*100)```
+% and 
+``` r ((means["evr"])/(means["WT"])*100)```
+%, repectively. 
+
+```{r}
 #plot fruitdata
 barplot(means,axisnames=FALSE,ylim=c(0,14),main="Fruit Length",xlab="Genotype",ylab="length(mm)")
 #create vector of bar mid-points
@@ -70,7 +78,13 @@ anova(lm(data~groups))
 #pairwise t test will tell which ones are different from each other
 pairwise.t.test(data,groups)
 #all p values are below 0.05, so all differences are signigicant
-#what is the magnitude of the differences?
+#what are the magnitudes of the differences?
+((means["nev"])/(means["WT"])*100)
+((means["evr"])/(means["WT"])*100)
+((means["nevevr"])/(means["WT"])*100)
+((means["nevevrhae"])/(means["WT"])*100)
+((means["nevevrhaehsl"])/(means["WT"])*100)
+((means["nevidaevr"])/(means["WT"])*100)
 ```
 
 ######Summary
