@@ -38,17 +38,17 @@ your general approach to analyzing the data,
 
 Loss of NEV or EVR activity reduces the length of fruit by `percent[["nev"]]`% and `percent[["evr"]]`%, repectively. 
 
-```r
+```{r}
 #create barplot of fruit lengths
 #reorder data frame
-fruitdata<-fruitdata[c("WT","nev","evr","nevevr","nevevrhae","nevevrhaehsl,"nevidaevr")]
+fruitdata<-fruitdata[c("WT","nev","evr","nevevr","nevevrhae","nevevrhaehsl","nevidaevr")]
 means<-colMeans(fruitdata)
 #plot fruitdata
 barplot(means,axisnames=FALSE,ylim=c(0,14),main="Fruit Length",xlab="Genotype",ylab="length(mm)")
-#label bars
-axis(1,labels=c("WT","evr","nev","nev evr hae","nev evr hae hsl2","nev evr","nev evr ida"),font=3,at=mp)
 #create vector of bar mid-points
 mp<-barplot(means,col="dodgerblue3",ylim=c(0,14),main="Fruit Length",xlab="Genotype",ylab="length(mm)")
+#label bars
+axis(1,labels=c("WT","evr","nev","nev evr hae","nev evr hae hsl2","nev evr","nev evr ida"),font=3,at=mp)
 #outline bar plot
 box()
 #get standard deviations of data
@@ -71,7 +71,6 @@ anova(lm(data~groups))
 pairwise.t.test(data,groups)
 #all p values are below 0.05, so all differences are signigicant
 #what is the magnitude of the differences?
-
 ```
 
 ######Summary
