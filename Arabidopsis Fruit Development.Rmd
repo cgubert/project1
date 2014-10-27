@@ -39,11 +39,13 @@ your general approach to analyzing the data,
 Loss of NEV or EVR activity reduces the length of fruit by `percent[["nev"]]`% and `percent[["evr"]]`%, repectively. 
 
 ```r
+#reorder data frame
+fruitdata<-fruitdata[c("WT","nev","evr","nevevr","nevevrhae","nevevrhaehsl"","nevidaevr")]
 colMeans(fruitdata)
 #plot fruitdata
-barplot(means,axisnames=FALSE,col="dodgerblue3",ylim=c(0,14),main="Fruit Length",xlab="Genotype",ylab="length(mm)")
+barplot(means,axisnames=FALSE,ylim=c(0,14),main="Fruit Length",xlab="Genotype",ylab="length(mm)")
 #create vector of bar mid-points
-mp<-barplot(means,col="blue",ylim=c(0,14),main="Fruit Length",xlab="Genotype",ylab="length(mm)")
+mp<-barplot(means,col="dodgerblue3",ylim=c(0,14),main="Fruit Length",xlab="Genotype",ylab="length(mm)")
 #label bars
 axis(1,labels=c("WT","evr","nev","nev evr hae","nev evr hae hsl2","nev evr","nev evr ida"),font=3,at=mp)
 #outline bar plot
