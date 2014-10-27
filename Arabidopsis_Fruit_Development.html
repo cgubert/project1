@@ -85,12 +85,14 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 <div id="statistical-methods" class="section level6">
 <h6>Statistical Methods</h6>
-<p>Loss of NEV or EVR activity reduces the length of fruit by <code>percent[[&quot;nev&quot;]]</code>% and <code>{r,echo=FALSE} percent[[&quot;evr&quot;]]</code>%, repectively.</p>
-<pre class="r"><code>colMeans(fruitdata)
+<p>Loss of NEV or EVR activity reduces the length of fruit by <code>percent[[&quot;nev&quot;]]</code>% and <code>percent[[&quot;evr&quot;]]</code>%, repectively.</p>
+<pre class="r"><code>#reorder data frame
+fruitdata&lt;-fruitdata[c(&quot;WT&quot;,&quot;nev&quot;,&quot;evr&quot;,&quot;nevevr&quot;,&quot;nevevrhae&quot;,&quot;nevevrhaehsl&quot;&quot;,&quot;nevidaevr&quot;)]
+colMeans(fruitdata)
 #plot fruitdata
-barplot(means,axisnames=FALSE,col=&quot;dodgerblue3&quot;,ylim=c(0,14),main=&quot;Fruit Length&quot;,xlab=&quot;Genotype&quot;,ylab=&quot;length(mm)&quot;)
+barplot(means,axisnames=FALSE,ylim=c(0,14),main=&quot;Fruit Length&quot;,xlab=&quot;Genotype&quot;,ylab=&quot;length(mm)&quot;)
 #create vector of bar mid-points
-mp&lt;-barplot(means,col=&quot;blue&quot;,ylim=c(0,14),main=&quot;Fruit Length&quot;,xlab=&quot;Genotype&quot;,ylab=&quot;length(mm)&quot;)
+mp&lt;-barplot(means,col=&quot;dodgerblue3&quot;,ylim=c(0,14),main=&quot;Fruit Length&quot;,xlab=&quot;Genotype&quot;,ylab=&quot;length(mm)&quot;)
 #label bars
 axis(1,labels=c(&quot;WT&quot;,&quot;evr&quot;,&quot;nev&quot;,&quot;nev evr hae&quot;,&quot;nev evr hae hsl2&quot;,&quot;nev evr&quot;,&quot;nev evr ida&quot;),font=3,at=mp)
 #outline bar plot
@@ -102,7 +104,10 @@ segments(mp,means-stDevs,mp,means+stDevs,lwd=1)
 segments(mp-0.1,means-stDevs,mp+0.1,means-stDevs,lwd=1)
 segments(mp-0.1,means+stDevs,mp+0.1,means+stDevs,lwd=1)
 #compare means of mutant fruit length to WT
-percent&lt;-(means/(means[&quot;WT&quot;]))*100</code></pre>
+percent&lt;-(means/(means[&quot;WT&quot;]))*100
+#ugly stats
+t.test(fruitdata$WT,fruitdata$evr)
+t.test(fruitdata$WT,fruitdata$nev)</code></pre>
 </div>
 <div id="summary" class="section level6">
 <h6>Summary</h6>
