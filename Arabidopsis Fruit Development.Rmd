@@ -51,9 +51,8 @@ A bar plot was generated to illustrate the average lengths of mutant fruit as co
 
 ```{r,echo=FALSE}
 #create barplot of fruit lengths
-#plot fruitdata
-#create vector of bar mid-points
-mp<-barplot(means,names.arg=FALSE,col="dodgerblue3",ylim=c(0,14),main="Fruit Length",xlab="Genotype",ylab="length(mm)")
+#create vector of bar mid-points to place error bars
+mp<-barplot(means,names.arg=FALSE,col="dodgerblue3",ylim=c(0,15),main="Fruit Length",xlab="Genotype",ylab="length(mm)")
 #label bars
 axis(1,labels=c("WT","nev","evr","nev evr","nev evr hae","nev evr hae hsl2","nev evr ida"),at=mp)
 #outline bar plot
@@ -66,6 +65,11 @@ colnames(stDevs)<-"SD"
 segments(mp,means-stDevs,mp,means+stDevs,lwd=1)
 segments(mp-0.1,means-stDevs,mp+0.1,means-stDevs,lwd=1)
 segments(mp-0.1,means+stDevs,mp+0.1,means+stDevs,lwd=1)
+```
+
+Both NEV and EVR promote fruit growth, as indicated by reduction in fruit length in both mutants. Compared to WT, *nev* fruit are `r ((means["nev"])/(means["WT"])*100)` % as long (`r means[["nev""]]` +/- `r stDevs[["nev""]]`)
+
+```r
 #is difference in average lengths significant between genotypes?
 #null hypothesis: the fruit lengths between genotypes are not significantly different
 #use analysis of variance test
@@ -80,7 +84,6 @@ anova(lm(data~groups))
 pairwise.t.test(data,groups)
 #all p values are below 0.05, so all differences are signigicant
 #what are the magnitudes of the differences?
-((means["nev"])/(means["WT"])*100)
 ((means["evr"])/(means["WT"])*100)
 ((means["nevevr"])/(means["WT"])*100)
 ((means["nevevrhae"])/(means["WT"])*100)
