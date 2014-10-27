@@ -58,12 +58,19 @@ segments(mp,means-stDevs,mp,means+stDevs,lwd=1)
 segments(mp-0.1,means-stDevs,mp+0.1,means-stDevs,lwd=1)
 segments(mp-0.1,means+stDevs,mp+0.1,means+stDevs,lwd=1)
 #is difference in average lengths significant between genotypes?
+#null hypothesis: the fruit lengths between genotypes are not significantly different
 #use analysis of variance test
 #get data into simple matrix to run ANOVA
 groups<-c(rep("WT",length(fruitdata$WT)),rep("nev",length(fruitdata$nev)),rep("evr",length(fruitdata$evr)),rep("nevevr",length(fruitdata$nevevr)),rep("nevevrhae",length(fruitdata$nevevrhae)),rep("nevevrhaehsl",length(fruitdata$nevevrhaehsl)),rep("nevidaevr",length(fruitdata$nevidaevr)))
 data<-c(fruitdata$WT,fruitdata$nev,fruitdata$evr,fruitdata$nevevr,fruitdata$nevevrhae,fruitdata$nevevrhaehsl,fruitdata$nevidaevr)
 #run ANOVA
 anova(lm(data~groups))
+#F>1, so there is more difference between groups than within them
+#reject null hypothesis
+#pairwise t test will tell which ones are different from each other
+pairwise.t.test(data,groups)
+#all p values are below 0.05, so all differences are signigicant
+#what is the magnitude of the differences?
 
 ```
 
