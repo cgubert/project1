@@ -67,32 +67,25 @@ results<-anova(lm(data~groups))
 
 An analysis of variance among all the data confirms that the difference in fruit length observed between the different genotypes is greater than the difference in fruit length among the individual samples from each genotype (F value: `r results[["F value"]]`)
 
-```r
-anova(lm(data~groups))
-```
-
 ```{r, echo=FALSE}
+anova(lm(data~groups))
 #F>1, so there is more difference between groups than within them
 #reject null hypothesis
 #pairwise t test will tell which ones are different from each other
 ```
 
-```r
+Both NEV and EVR promote fruit growth, as indicated by reduction in fruit length in both mutants. Compared to WT, *nev* fruit are `r ((means["nev"])/(means["WT"])*100)`% as long (`r (means[["nev"]])` ± `r stDevs[2]`mm) and *evr* fruit are `r ((means["evr"])/(means["WT"])*100)`% as long (`r means[["evr"]]` ± `r stDevs[3]`mm). The reduction of growth in the double mutant is significantly greater than either of the individual mutants, supporting the hypothesis that NEV and EVR independently effect fruit growth. *nev evr* fruit are `r ((means["nevevr"])/(means["WT"])*100)`% as long as WT fruit (`r (means[["nev"]])` ± `r stDevs[4]`mm). Supporting previous research that shows HAE and HSL2 to function redundantly, the *nev evr hae hsl2* quadruple mutant shows a partial rescue of normal fruit length. *nev evr hae hsl2* fruit are `r ((means["nevevrhaehsl"])/(means["WT"])*100)`% of WT fruit length. The lengths of quadruple mutant fruits are more similar to the single mutants (`r ((means["nevevrhaehsl"])/(means["nev"])*100)`% of *nev* and `r ((means["nevevrhaehsl"])/(means["evr"])*100)`% of *evr*) than to the double mutant (`r ((means["nevevrhaehsl"])/(means["nevevr"])*100)`% of *nev evr*). 
+
+
+```{r,echo=FALSE}
 pairwise.t.test(data,groups)
 ```
 
-Both NEV and EVR promote fruit growth, as indicated by reduction in fruit length in both mutants. Compared to WT, *nev* fruit are `r ((means["nev"])/(means["WT"])*100)`% as long (`r (means[["nev"]])` ± `r stDevs[2]`mm) and *evr* fruit are `r ((means["evr"])/(means["WT"])*100)`% as long (`r means[["evr"]]` ± `r stDevs[3]`mm). The reduction of growth in the double mutant is significantly greater than either of the individual mutants, supporting the hypothesis that NEV and EVR independently effect fruit growth. *nev evr* fruit are `r ((means["nevevr"])/(means["WT"])*100)`% as long as WT fruit (`r (means[["nev"]])` ± `r stDevs[4]`mm). 
 
 ```r
 #what are the magnitudes of the differences?
-((means["nevevrhae"])/(means["WT"])*100)
-((means["nevevrhaehsl"])/(means["WT"])*100)
 ((means["nevidaevr"])/(means["WT"])*100)
 ```
-Loss of NEV or EVR activity reduces the length of *Arabidopsis* fruit by 
-```r ((means["nev"])/(means["WT"])*100)```
-% and 
-``` r ((means["evr"])/(means["WT"])*100)```
-%, repectively. 
+
 ######Summary
 a summary of your results, a discussion, and mention of what your future directions would be.
