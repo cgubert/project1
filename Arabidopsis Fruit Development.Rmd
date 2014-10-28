@@ -74,18 +74,30 @@ anova(lm(data~groups))
 #pairwise t test will tell which ones are different from each other
 ```
 
-Both NEV and EVR promote fruit growth, as indicated by reduction in fruit length in both mutants. Compared to WT, *nev* fruit are `r ((means["nev"])/(means["WT"])*100)`% as long (`r (means[["nev"]])` ± `r stDevs[2]`mm) and *evr* fruit are `r ((means["evr"])/(means["WT"])*100)`% as long (`r means[["evr"]]` ± `r stDevs[3]`mm). The reduction of growth in the double mutant is significantly greater than either of the individual mutants, supporting the hypothesis that NEV and EVR independently effect fruit growth. *nev evr* fruit are `r ((means["nevevr"])/(means["WT"])*100)`% as long as WT fruit (`r (means[["nev"]])` ± `r stDevs[4]`mm). Supporting previous research that shows HAE and HSL2 to function redundantly, the *nev evr hae hsl2* quadruple mutant shows a partial rescue of normal fruit length. *nev evr hae hsl2* fruit are `r ((means["nevevrhaehsl"])/(means["WT"])*100)`% of WT fruit length. The lengths of quadruple mutant fruits are more similar to the single mutants (`r ((means["nevevrhaehsl"])/(means["nev"])*100)`% of *nev* and `r ((means["nevevrhaehsl"])/(means["evr"])*100)`% of *evr*) than to the double mutant (`r ((means["nevevrhaehsl"])/(means["nevevr"])*100)`% of *nev evr*). 
+Both NEV and EVR promote fruit growth, as indicated by reduction in fruit length in both mutants. Compared to WT, *nev* fruit are `r ((means["nev"])/(means["WT"])*100)`% as long (`r (means[["nev"]])` ± `r stDevs[2]`mm) and *evr* fruit are `r ((means["evr"])/(means["WT"])*100)`% as long (`r means[["evr"]]` ± `r stDevs[3]`mm). The reduction of growth in the double mutant is significantly greater than either of the individual mutants, supporting the hypothesis that NEV and EVR independently affect fruit growth. *nev evr* fruit are `r ((means["nevevr"])/(means["WT"])*100)`% as long as WT fruit (`r (means[["nev"]])` ± `r stDevs[4]`mm). Supporting previous research that shows HAE and HSL2 to function redundantly, the *nev evr hae hsl2* quadruple mutant shows a partial rescue of normal fruit length. *nev evr hae hsl2* fruit are `r ((means["nevevrhaehsl"])/(means["WT"])*100)`% of WT fruit length. The lengths of quadruple mutant fruits are more similar to the single mutants (`r ((means["nevevrhaehsl"])/(means["nev"])*100)`% of *nev* and `r ((means["nevevrhaehsl"])/(means["evr"])*100)`% of *evr*) than to the double mutant (`r ((means["nevevrhaehsl"])/(means["nevevr"])*100)`% of *nev evr*). Repression of IDA, the proposed ligand for HAE/HSL2 in the organ abscission pathway, partially restores fruit growth in *nev evr* plants. The triple mutants were `r ((means["nevidaevr"])/(means["nevevr"])*100)`% the length of the double mutants (p<0.05).
 
+```{r,echo=FALSE}
+t.test(fruitdata$nevidaevr,fruitdata$nevevr)
+```
+
+The *nev evr ida* mutant fruit are `r ((means["nevidaevr"])/(means["nevevrhaehsl"])*100)`% of *nev evr hae hsl2* fruit. The removal of IDA activity does not restore fruit growth as much as the blocking of HAE/HSL2. 
+
+```{r,echo=FALSE}
+t.test(fruitdata$nevevrhaehsl,fruitdata$nevidaevr)
+```
+
+A summary of statistical significance is shown by running a paired t test.
 
 ```{r,echo=FALSE}
 pairwise.t.test(data,groups)
 ```
 
 
-```r
-#what are the magnitudes of the differences?
-((means["nevidaevr"])/(means["WT"])*100)
-```
 
 ######Summary
-a summary of your results, a discussion, and mention of what your future directions would be.
+
+
+
+
+
+

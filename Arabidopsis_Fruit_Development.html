@@ -115,7 +115,31 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 ## Residuals 203     68     0.3                   
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-<p>Both NEV and EVR promote fruit growth, as indicated by reduction in fruit length in both mutants. Compared to WT, <em>nev</em> fruit are 72.7394% as long (9.7508 ± 0.5492mm) and <em>evr</em> fruit are 79.959% as long (10.7186 ± 0.491mm). The reduction of growth in the double mutant is significantly greater than either of the individual mutants, supporting the hypothesis that NEV and EVR independently effect fruit growth. <em>nev evr</em> fruit are 55.4694% as long as WT fruit (9.7508 ± 0.52mm). Supporting previous research that shows HAE and HSL2 to function redundantly, the <em>nev evr hae hsl2</em> quadruple mutant shows a partial rescue of normal fruit length. <em>nev evr hae hsl2</em> fruit are 77.998% of WT fruit length. The lengths of quadruple mutant fruits are more similar to the single mutants (107.2295% of <em>nev</em> and 97.5476% of <em>evr</em>) than to the double mutant (140.6145% of <em>nev evr</em>).</p>
+<p>Both NEV and EVR promote fruit growth, as indicated by reduction in fruit length in both mutants. Compared to WT, <em>nev</em> fruit are 72.7394% as long (9.7508 ± 0.5492mm) and <em>evr</em> fruit are 79.959% as long (10.7186 ± 0.491mm). The reduction of growth in the double mutant is significantly greater than either of the individual mutants, supporting the hypothesis that NEV and EVR independently affect fruit growth. <em>nev evr</em> fruit are 55.4694% as long as WT fruit (9.7508 ± 0.52mm). Supporting previous research that shows HAE and HSL2 to function redundantly, the <em>nev evr hae hsl2</em> quadruple mutant shows a partial rescue of normal fruit length. <em>nev evr hae hsl2</em> fruit are 77.998% of WT fruit length. The lengths of quadruple mutant fruits are more similar to the single mutants (107.2295% of <em>nev</em> and 97.5476% of <em>evr</em>) than to the double mutant (140.6145% of <em>nev evr</em>). Repression of IDA, the proposed ligand for HAE/HSL2 in the organ abscission pathway, partially restores fruit growth in <em>nev evr</em> plants. The triple mutants were 111.0493% the length of the double mutants (p&lt;0.05).</p>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  fruitdata$nevidaevr and fruitdata$nevevr
+## t = 5.31, df = 56.36, p-value = 1.929e-06
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.5117 1.1315
+## sample estimates:
+## mean of x mean of y 
+##     8.257     7.436</code></pre>
+<p>The <em>nev evr ida</em> mutant fruit are 78.9743% of <em>nev evr hae hsl2</em> fruit. The removal of IDA activity does not restore fruit growth as much as the blocking of HAE/HSL2.</p>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  fruitdata$nevevrhaehsl and fruitdata$nevidaevr
+## t = 12.48, df = 57.46, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.846 2.551
+## sample estimates:
+## mean of x mean of y 
+##    10.456     8.257</code></pre>
+<p>A summary of statistical significance is shown by running a paired t test.</p>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -130,12 +154,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 ## WT           &lt; 2e-16 &lt; 2e-16 &lt; 2e-16 &lt; 2e-16   &lt; 2e-16      &lt; 2e-16  
 ## 
 ## P value adjustment method: holm</code></pre>
-<pre class="r"><code>#what are the magnitudes of the differences?
-((means[&quot;nevidaevr&quot;])/(means[&quot;WT&quot;])*100)</code></pre>
 </div>
 <div id="summary" class="section level6">
 <h6>Summary</h6>
-<p>a summary of your results, a discussion, and mention of what your future directions would be.</p>
 </div>
 </div>
 
