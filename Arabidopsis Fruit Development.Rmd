@@ -62,7 +62,10 @@ segments(mp-0.1,means+stDevs,mp+0.1,means+stDevs,lwd=1)
 groups<-c(rep("WT",length(fruitdata$WT)),rep("nev",length(fruitdata$nev)),rep("evr",length(fruitdata$evr)),rep("nevevr",length(fruitdata$nevevr)),rep("nevevrhae",length(fruitdata$nevevrhae)),rep("nevevrhaehsl",length(fruitdata$nevevrhaehsl)),rep("nevidaevr",length(fruitdata$nevidaevr)))
 data<-c(fruitdata$WT,fruitdata$nev,fruitdata$evr,fruitdata$nevevr,fruitdata$nevevrhae,fruitdata$nevevrhaehsl,fruitdata$nevidaevr)
 #run ANOVA
+results<-anova(lm(data~groups))
 ```
+
+An analysis of variance among all the data confirms that the difference in fruit length observed between the different genotypes is greater than the difference in fruit length among the individual samples from each genotype (F value: `r results[["F value"]]`)
 
 ```r
 anova(lm(data~groups))
@@ -72,8 +75,10 @@ anova(lm(data~groups))
 #F>1, so there is more difference between groups than within them
 #reject null hypothesis
 #pairwise t test will tell which ones are different from each other
+```
+
+```r
 pairwise.t.test(data,groups)
-#all p values are below 0.05, so all differences are signigicant
 ```
 
 Both NEV and EVR promote fruit growth, as indicated by reduction in fruit length in both mutants. Compared to WT, *nev* fruit are `r ((means["nev"])/(means["WT"])*100)`% as long (`r (means[["nev"]])` ± `r stDevs[2]`mm) and *evr* fruit are `r ((means["evr"])/(means["WT"])*100)`% as long (`r means[["evr"]]` ± `r stDevs[3]`mm). The reduction of growth in the double mutant is significantly greater than either of the individual mutants, supporting the hypothesis that NEV and EVR independently effect fruit growth. *nev evr* fruit are `r ((means["nevevr"])/(means["WT"])*100)`% as long as WT fruit (`r (means[["nev"]])` ± `r stDevs[4]`mm). 
